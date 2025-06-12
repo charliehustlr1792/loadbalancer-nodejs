@@ -49,4 +49,7 @@ const proxyMiddleware = createProxyMiddleware({
 // Use the proxy middleware for all routes
 router.use('/', proxyMiddleware);
 
+
+let healthyServers=[]
+
 module.exports = router;
