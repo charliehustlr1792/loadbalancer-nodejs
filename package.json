@@ -1,20 +1,41 @@
 {
-  "name": "loadbalancer",
+  "name": "simple-load-balancer",
   "version": "1.0.0",
+  "description": "A simple load balancer with SSL termination, health checks, and multiple balancing strategies",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "backend": "node backend-servers/server.js",
+    "backend:3000": "node backend-servers/server.js 3000",
+    "backend:3001": "node backend-servers/server.js 3001", 
+    "backend:3002": "node backend-servers/server.js 3002",
+    "test": "curl -k https://localhost/api/test",
+    "health": "curl -k https://localhost/health",
+    "metrics": "curl -k https://localhost/metrics",
+    "ssl:generate": "mkdir -p ssl && cd ssl && openssl req -nodes -new -x509 -keyout key.pem -out cert.pem -days 365 -subj '/CN=localhost'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "load-balancer",
+    "proxy",
+    "ssl-termination",
+    "health-checks",
+    "round-robin",
+    "weighted-distribution",
+    "session-affinity"
+  ],
+  "author": "Load Balancer Implementation",
+  "license": "MIT",
   "dependencies": {
-    "cluster": "^0.7.7",
-    "cookie-parser": "^1.4.7",
-    "express": "^5.1.0",
-    "http-proxy": "^1.18.1",
+    "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
-    "https": "^1.0.0"
+    "cookie-parser": "^1.4.6",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
